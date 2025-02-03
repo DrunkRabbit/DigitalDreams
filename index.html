@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your NFT Gallery</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #00fff2;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            padding: 40px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #00fff2;
+            background: linear-gradient(to right, #0d0d0d, #00fff2, #0d0d0d);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 0 15px #00fff2;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            margin-top: 20px;
+            padding: 20px;
+            font-size: 1.2em;
+        }
+        .socials a {
+            margin: 0 10px;
+            color: #00fff2;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .socials a:hover {
+            text-shadow: 0 0 10px #00fff2;
+        }
+        input[type="file"] {
+            margin-top: 15px;
+            padding: 10px;
+            background: #00fff2;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>My NFT Art Gallery</header>
+
+    <p>Welcome to my futuristic NFT collection.</p>
+
+    <input type="file" id="imageUpload" accept="image/*" multiple>
+    
+    <div class="gallery" id="gallery"></div>
+
+    <footer>
+        <p>Connect with me:</p>
+        <div class="socials">
+            <a href="#" target="_blank">Twitter</a> |
+            <a href="#" target="_blank">Instagram</a> |
+            <a href="#" target="_blank">OpenSea</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = ''; 
+            const files = event.target.files;
+            for (let file of files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    gallery.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</body>
+</html>
